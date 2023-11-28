@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:each="doctor : ${doctors}">
+    <a th:text="${'Доктор ' + doctor.getName() + ' ,Специальность:' + doctor.getSpeciality()}">user</a>
+    <form action="/doctors/book">
+        <input type="hidden" name="id" th:value="${doctor.getId()}"/>
+        <button type="submit">Выбрать врача</button>
+    </form>
+
+</div>
+</body>
+</html>
