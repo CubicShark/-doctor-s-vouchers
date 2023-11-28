@@ -28,4 +28,13 @@ public class PeopleService {
     public void save(Person person){
         peopleRepository.save(person);
     }
+
+    @Transactional
+    public void deleteById(int id){
+        peopleRepository.deleteById(id);
+    }
+
+    public Person findById(int id){
+        return peopleRepository.findById(id);
+    }
 }

@@ -19,8 +19,10 @@ public class Talon {
     @Pattern(regexp="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]-(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$", message="Некорректный формат времени")
     private String time;
 
-    @ManyToOne
+    @Column(name = "taken")
+    private boolean taken;
 
+    @ManyToOne
     @JoinColumn(name = "doctor_id", referencedColumnName = "id")
     private Doctor doctor;
 
@@ -29,11 +31,20 @@ public class Talon {
     private Person person;
 
 
-    public Talon(String time) {
+    public Talon(String time,boolean taken) {
         this.time = time;
+        this.taken = taken;
     }
 
     public Talon() {
+    }
+
+    public boolean isTaken() {
+        return taken;
+    }
+
+    public void setTaken(boolean taken) {
+        this.taken = taken;
     }
 
     public String getTime() {

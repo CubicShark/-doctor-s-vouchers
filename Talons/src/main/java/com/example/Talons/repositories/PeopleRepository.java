@@ -12,5 +12,8 @@ import java.util.List;
 @Transactional(readOnly = true)
 public interface PeopleRepository extends JpaRepository<Person,Integer> {
     List<Person> findAll();
+    Person findById(int id);
+
+    void deleteById(int id);
 
 }

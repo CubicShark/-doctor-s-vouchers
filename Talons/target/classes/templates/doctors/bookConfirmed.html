@@ -5,6 +5,16 @@
     <title>Title</title>
 </head>
 <body>
-
+<h1>Талон</h1>
+<a th:text="${doctor.getName() + ', ' + doctor.getSpeciality()}">user</a>
+<a th:text="${talon.getTime()}">user</a>
+<a th:text="${person.getName() + ', ' + person.getPhone()}">user</a>
+<br/>
+<hr/>
+<form th:method="DELETE" th:action="@{/doctors/bookConfirmed}" th:object="${person}">
+    <input type="hidden" name="personId" th:value="${person.getId()}"/>
+    <input type="submit" value="Отменить бронь талона"/>
+</form>
+<a href="/talonCenter">Return to home screen</a>
 </body>
 </html>
