@@ -1,6 +1,7 @@
 package com.example.Talons.services;
 
 import com.example.Talons.models.Doctor;
+import com.example.Talons.models.Talon;
 import com.example.Talons.repositories.DoctorsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

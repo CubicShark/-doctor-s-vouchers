@@ -23,10 +23,7 @@ public class DoctorsController {
     private final TalonsService talonsService;
     private final PeopleService peopleService;
 
-    public List<Talon> notTakenTalons(List<Talon> talons){
-        talons.removeIf(Talon::isTaken);
-        return talons;
-    }
+
 
     @Autowired
     public DoctorsController(DoctorsService doctorsService, TalonsService talonsService, PeopleService peopleService) {
@@ -49,7 +46,7 @@ public class DoctorsController {
     @GetMapping("/book")
     public String book(@RequestParam(name = "id") int id,Model model) {
         model.addAttribute("person" , new Person());
-        model.addAttribute("talons", notTakenTalons(doctorsService.findById(id).getTalons()));
+        model.addAttribute("talons",talonsService.notTakenTalons(doctorsService.findById(id).getTalons()));
         model.addAttribute("idD",id);
         return "doctors/book";
     }
@@ -64,7 +61,7 @@ public class DoctorsController {
                         BindingResult bindingResult){
 
         if(bindingResult.hasErrors()) {
-            model.addAttribute("talons",notTakenTalons( doctorsService.findById(idD).getTalons()));
+            model.addAttribute("talons",talonsService.notTakenTalons( doctorsService.findById(idD).getTalons()));
             return "doctors/book";
         }
 
@@ -94,10 +91,29 @@ public class DoctorsController {
     @DeleteMapping("/bookConfirmed")
     public String cansel(@RequestParam(name = "personId") int id){
 
+
+        //talonsService.findById(peopleService.findById(id).getTalon().getId()).setPerson(null);
         talonsService.updateIsTaken(false,peopleService.findById(id).getTalon().getId());
         peopleService.deleteById(id);
 
         return "redirect:/talonCenter";
+    }
+
+    @DeleteMapping("/bookConfirmedAT")
+    public String canselAT(@RequestParam(name = "personId") int id){
+
+        talonsService.deleteById(peopleService.findById(id).getTalon().getId());
+        peopleService.deleteById(id);
+
+        return "redirect:/talonCenter/admin";
+    }
+
+    @DeleteMapping("/bookConfirmedANT")
+    public String canselANT(@RequestParam(name = "talonId") int id){
+
+        talonsService.deleteById(id);
+
+        return "redirect:/talonCenter/admin";
     }
 
 }
