@@ -40,9 +40,15 @@ public class DoctorsController {
 
     @GetMapping("/book")
     public String book(@RequestParam(name = "id") int id,Model model) {
+        if(doctorsService.findById(id).getTalons().isEmpty()){
+            model.addAttribute("doctors",doctorsService.findAll());
+            return "doctors/show";
+        }
+
         model.addAttribute("person" , new Person());
         model.addAttribute("talons",talonsService.notTakenTalons(doctorsService.findById(id).getTalons()));
         model.addAttribute("idD",id);
+
         return "doctors/book";
     }
 
@@ -76,7 +82,7 @@ public class DoctorsController {
     }
 
     @GetMapping("/bookConfirmed")
-    public String checkinConfirmed(Model model,@RequestParam(name = "idT") int idT){
+    public String bookConfirmed(Model model,@RequestParam(name = "idT") int idT){
         model.addAttribute("doctor",talonsService.findById(idT).getDoctor());
         model.addAttribute("person", talonsService.findById(idT).getPerson());
         model.addAttribute("talon",talonsService.findById(idT));
