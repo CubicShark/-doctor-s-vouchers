@@ -36,6 +36,10 @@ public class Talon {
         this.taken = taken;
     }
 
+    public Talon(String time) {
+        this.time = time;
+    }
+
     public Talon() {
     }
 

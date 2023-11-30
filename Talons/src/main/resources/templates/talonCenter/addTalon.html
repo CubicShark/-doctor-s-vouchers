@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New talon</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/talonCenter/addTalon}" th:object="${talon}">
+    <label for="time">Введите время: </label>
+    <input type="text" th:field="*{time}" id="time"/>
+    <div style="color:red" th:if="${#fields.hasErrors('time')}" th:errors="*{time}">Error </div>
+    <br/>
+    <label>
+        <select name="idD">
+            <option th:each=" doctor : ${doctors}" th:value="${doctor.getId()}" th:text="${doctor.getName() + ', ' + doctor.getSpeciality()}">
+            </option>
+        </select>
+    </label>
+    <br/>
+    <br/>
+    <input type="submit" value="Cоздать талон"/>
+</form>
+<br/>
+<a href="/talonCenter/admin">Вернуться</a><br/>
+</body>
+</html>

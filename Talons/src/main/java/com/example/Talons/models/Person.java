@@ -18,7 +18,7 @@ public class Person {
     private String name;
 
     @NotEmpty(message = "Номер телефона не должен быть пустым")
-    //@Pattern(regexp="^\\+[0-9]{10}$", message="Некорректный формат номера телефона")
+    @Pattern(regexp="^\\+[0-9]{12}$", message="Некорректный формат номера телефона")
     @Column(name = "phone")
     private String phone;
 

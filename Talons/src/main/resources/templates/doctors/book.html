@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>New person</title>
+  <title>book</title>
 </head>
 <body>
 
@@ -13,7 +13,7 @@
   <br/>
   <label for="age">Enter phone number: </label>
   <input type="text" th:field="*{phone}" id="age"/>
-  <div style="color:red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Age Error</div>
+  <div style="color:red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Phone Error</div>
   <br/>
   <label>
     <select name="idT">
@@ -23,7 +23,7 @@
   </label>
   <br/>
   <br/>
-  <input type="hidden" name="idD" th:value="${talons.get(0).getDoctor().getId()}"/>
+  <input type="hidden" name="idD" th:value="${idD}"/>
   <input type="submit" value="забронировать"/>
 </form>
 <br/>

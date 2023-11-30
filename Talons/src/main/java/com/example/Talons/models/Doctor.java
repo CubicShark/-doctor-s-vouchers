@@ -15,11 +15,12 @@ public class Doctor {
     private int id;
 
     @NotEmpty(message = "Имя не должно быть пустым")
-    @Size(min = 2, max = 30, message = "Количество символов м имени должно быть от 2 до 30")
+    @Size(min = 2, max = 30, message = "Количество символов в имени должно быть от 2 до 30")
     @Column(name = "name")
     private String name;
 
     @NotEmpty(message = "Не может быть пустым")
+    @Size(min = 2, max = 30, message = "Количество символов в специальности должно быть от 2 до 30")
     @Column(name = "speciality")
     private String speciality;
 

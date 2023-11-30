@@ -2,30 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Admin Panel</title>
 </head>
 <body>
 <div th:each="talon : ${takenTalons}">
     <a th:text="${talon.getDoctor().getName() + ', ' + talon.getDoctor().getSpeciality()}">user</a>
     <a th:text="${talon.getTime()}">user</a>
     <a th:text="${talon.getPerson().getName() + ', ' + talon.getPerson().getPhone()}">user</a>
-    <br/>
-    <hr/>
+
     <form th:method="DELETE" th:action="@{/doctors/bookConfirmedAT}" th:object="${talon.getPerson()}">
         <input type="hidden" name="personId" th:value="${talon.getPerson().getId()}"/>
         <input type="submit" value="Удалить талон"/>
     </form>
+    <br/>
+    <hr/>
 </div>
 <div th:each="talon : ${notTakenTalons}">
     <a th:text="${talon.getDoctor().getName() + ', ' + talon.getDoctor().getSpeciality()}">user</a>
     <a th:text="${talon.getTime()}">user</a>
-    <br/>
-    <hr/>
+
     <form th:method="DELETE" th:action="@{/doctors/bookConfirmedANT}" th:object="${talon}">
         <input type="hidden" name="talonId" th:value="${talon.getId()}"/>
         <input type="submit" value="Удалить талон"/>
     </form>
+    <br/>
+    <hr/>
 </div>
+<a href="/talonCenter/addTalon">Создать талон</a>
+<br/>
+<hr/>
+<a href="/talonCenter/addDoctor">Добавить доктора</a>
+<br/>
+<hr/>
 <a href="/talonCenter">На главный экран</a>
 </body>
 </html>

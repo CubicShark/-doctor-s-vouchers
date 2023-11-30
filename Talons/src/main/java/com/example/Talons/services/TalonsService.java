@@ -1,5 +1,6 @@
 package com.example.Talons.services;
 
+import com.example.Talons.models.Doctor;
 import com.example.Talons.models.Talon;
 import com.example.Talons.repositories.TalonsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,11 @@ public class TalonsService {
             }
         }
         return takenTalons;
+    }
+
+    @Transactional
+    public void save(Talon talon){
+        talonsRepository.save(talon);
     }
 
     @Transactional

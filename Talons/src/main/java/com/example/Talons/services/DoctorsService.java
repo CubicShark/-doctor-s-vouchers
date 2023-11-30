@@ -1,6 +1,7 @@
 package com.example.Talons.services;
 
 import com.example.Talons.models.Doctor;
+import com.example.Talons.models.Person;
 import com.example.Talons.models.Talon;
 import com.example.Talons.repositories.DoctorsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,10 @@ public class DoctorsService {
 
     public Doctor findById(int id) {
         return doctorsRepository.findById(id);
+    }
+
+    @Transactional
+    public void save(Doctor doctor){
+        doctorsRepository.save(doctor);
     }
 }
