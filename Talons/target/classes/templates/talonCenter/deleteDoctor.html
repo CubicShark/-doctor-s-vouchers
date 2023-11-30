@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Удаление врача</title>
+</head>
+<body>
+
+<div th:each="doctor : ${doctors}">
+    <a th:text="${doctor.getName() + ', ' + doctor.getSpeciality()}">user</a>
+    <form th:method="DELETE" th:action="@{/talonCenter/deleteDoctor}" th:object="${doctor}">
+        <input type="hidden" name="id" th:value="${doctor.getId()}"/>
+        <input type="submit" value="Удалить"/>
+    </form>
+</div>
+
+
+
+<a href="/talonCenter/admin">Вернуться</a><br/>
+</body>
+</html>

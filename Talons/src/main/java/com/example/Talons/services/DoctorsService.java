@@ -30,6 +30,12 @@ public class DoctorsService {
         return doctorsRepository.findById(id);
     }
 
+
+    @Transactional
+    public void deleteById(int id){
+        doctorsRepository.deleteById(id);
+    }
+
     @Transactional
     public void save(Doctor doctor){
         doctorsRepository.save(doctor);

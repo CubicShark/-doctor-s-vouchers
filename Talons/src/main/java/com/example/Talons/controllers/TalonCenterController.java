@@ -84,4 +84,25 @@ public class TalonCenterController {
         doctorsService.save(doctor);
         return "redirect:/talonCenter/admin";
     }
+
+    @GetMapping("/deleteDoctor")
+    public String deleteDoctor(Model model){
+        model.addAttribute("doctors", doctorsService.findAll());
+        return "talonCenter/deleteDoctor";
+    }
+
+    @DeleteMapping("/deleteDoctor")
+    public String deleteDoctorP(Model model,@RequestParam(name = "id") int id){
+
+        for(int i=0;i<doctorsService.findById(id).getTalons().size();i++){
+            talonsService.deleteById(doctorsService.findById(id).getTalons().get(i).getId());
+        }
+
+        doctorsService.deleteById(id);
+
+        model.addAttribute("doctors", doctorsService.findAll());
+        return "talonCenter/deleteDoctor";
+    }
+
+
 }

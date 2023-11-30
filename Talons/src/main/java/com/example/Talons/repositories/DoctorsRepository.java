@@ -13,4 +13,6 @@ import java.util.List;
 public interface DoctorsRepository extends JpaRepository<Doctor,Integer> {
     List<Doctor> findAll();
     Doctor findById(int id);
+
+    void deleteById(int id);
 }

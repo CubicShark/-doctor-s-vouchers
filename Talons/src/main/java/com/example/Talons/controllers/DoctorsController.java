@@ -35,13 +35,15 @@ public class DoctorsController {
     @GetMapping("/show")
     public String show(Model model){
         model.addAttribute("doctors",doctorsService.findAll());
+        model.addAttribute("talonService",talonsService);
         return "doctors/show";
     }
 
     @GetMapping("/book")
     public String book(@RequestParam(name = "id") int id,Model model) {
-        if(doctorsService.findById(id).getTalons().isEmpty()){
+        if(talonsService.notTakenTalons(doctorsService.findById(id).getTalons()).isEmpty()){
             model.addAttribute("doctors",doctorsService.findAll());
+            model.addAttribute("talonService",talonsService);
             return "doctors/show";
         }
 
